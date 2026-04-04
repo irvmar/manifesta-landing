@@ -7,7 +7,10 @@ import { AppStoreBadge } from "@/components/ui/app-store-badge";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: "#0F1F4E" }}
+    >
       <GradientMesh variant="midnight" />
       <div className="noise-overlay" />
       <FloatingParticles count={12} />
@@ -83,29 +86,22 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span
-          className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-medium"
-          style={{ fontFamily: "var(--font-cormorant)" }}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        style={{ animation: "scrollChevron 2s ease-in-out infinite" }}
+      >
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          scroll
-        </span>
-        <div className="relative w-px h-8">
-          <div
-            className="absolute inset-0 origin-top"
-            style={{
-              background: "linear-gradient(to bottom, rgba(155,142,206,0.6), rgba(155,142,206,0))",
-              animation: "scrollLineExtend 2.5s ease-in-out infinite",
-            }}
-          />
-        </div>
-        <div
-          className="w-1.5 h-1.5 rounded-full"
-          style={{
-            background: "rgba(155,142,206,0.6)",
-            animation: "scrollDotPulse 2.5s ease-in-out infinite",
-          }}
-        />
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </div>
     </section>
   );

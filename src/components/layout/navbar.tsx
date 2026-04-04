@@ -15,29 +15,33 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  // Non-landing pages have a light background, so navbar starts in "scrolled" style
   const isLanding = pathname === "/";
+
+  // On non-landing pages, always show solid. On landing, show solid after scroll.
   const showSolid = scrolled || !isLanding;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll(); // Check immediately on mount
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 navbar-glow-border transition-all duration-700 ease-out ${
-        showSolid
-          ? "scrolled bg-white/85 backdrop-blur-2xl shadow-[0_1px_12px_-4px_rgba(0,0,0,0.06)]"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      style={{
+        background: showSolid
+          ? "rgba(255,255,255,0.88)"
+          : "linear-gradient(to bottom, rgba(15,31,78,0.5) 0%, transparent 100%)",
+        backdropFilter: showSolid ? "blur(20px)" : "none",
+        WebkitBackdropFilter: showSolid ? "blur(20px)" : "none",
+        boxShadow: showSolid ? "0 1px 8px -3px rgba(0,0,0,0.08)" : "none",
+      }}
     >
       <nav className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -47,18 +51,19 @@ export function Navbar() {
             alt="Manifesta"
             width={32}
             height={32}
-            className="rounded-lg transition-all duration-500 group-hover:scale-105 group-hover:rotate-[2deg]"
+            className="rounded-lg transition-all duration-300 group-hover:scale-105"
             style={{
               filter: showSolid
-                ? "drop-shadow(0 0 4px rgba(155,142,206,0.2))"
-                : "drop-shadow(0 0 8px rgba(155,142,206,0.5))",
+                ? "none"
+                : "drop-shadow(0 0 6px rgba(155,142,206,0.5))",
             }}
           />
           <span
-            className={`text-xl font-semibold tracking-wide transition-colors duration-700 ${
-              showSolid ? "text-[var(--lavender-800)]" : "text-white"
-            }`}
-            style={{ fontFamily: "var(--font-cormorant)" }}
+            className="text-xl font-semibold tracking-wide transition-colors duration-500"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              color: showSolid ? "var(--lavender-800)" : "white",
+            }}
           >
             Manifesta
           </span>
@@ -66,54 +71,32 @@ export function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative text-sm font-medium transition-all duration-500 ${
-                  showSolid
-                    ? isActive
-                      ? "text-[var(--lavender-600)]"
-                      : "text-[var(--neutral-500)] hover:text-[var(--lavender-600)]"
-                    : isActive
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
-                }`}
-              >
-                {link.label}
-                {isActive && (
-                  <span
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
-                    style={{
-                      background: showSolid
-                        ? "var(--lavender-400)"
-                        : "rgba(255,255,255,0.6)",
-                    }}
-                  />
-                )}
-              </Link>
-            );
-          })}
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium transition-colors duration-300"
+              style={{
+                color: showSolid
+                  ? pathname === link.href ? "var(--lavender-600)" : "var(--neutral-500)"
+                  : "rgba(255,255,255,0.85)",
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
           <a
             href="https://apps.apple.com/app/manifesta"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-500 hover:scale-[1.04] active:scale-[0.98]"
+            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.03]"
             style={{
               background: showSolid
-                ? "linear-gradient(135deg, var(--lavender-500), var(--lavender-600))"
-                : "rgba(255,255,255,0.15)",
-              color: "white",
-              backdropFilter: showSolid ? "none" : "blur(16px)",
-              WebkitBackdropFilter: showSolid ? "none" : "blur(16px)",
-              border: showSolid
-                ? "none"
-                : "1px solid rgba(255,255,255,0.2)",
-              boxShadow: showSolid
-                ? "0 2px 12px -2px rgba(155,142,206,0.4)"
-                : "none",
+                ? "var(--lavender-500)"
+                : "rgba(255,255,255,0.18)",
+              border: showSolid ? "none" : "1px solid rgba(255,255,255,0.25)",
+              backdropFilter: showSolid ? "none" : "blur(12px)",
+              WebkitBackdropFilter: showSolid ? "none" : "blur(12px)",
             }}
           >
             Get the App
@@ -123,90 +106,63 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 ${
-            menuOpen
-              ? showSolid
-                ? "bg-[var(--lavender-50)]"
-                : "bg-white/10"
-              : "bg-transparent"
-          }`}
+          className="md:hidden w-10 h-10 flex items-center justify-center"
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
-          <div className="w-5 flex flex-col gap-[5px]">
+          <div className="w-5 flex flex-col gap-1.5">
             <span
-              className={`block h-[1.5px] rounded-full origin-center transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                showSolid ? "bg-[var(--neutral-600)]" : "bg-white"
-              } ${menuOpen ? "rotate-45 translate-y-[3.25px]" : ""}`}
+              className="block h-[1.5px] rounded-full transition-all duration-300 origin-center"
+              style={{
+                background: showSolid ? "var(--neutral-700)" : "white",
+                transform: menuOpen ? "rotate(45deg) translateY(4.5px)" : "none",
+              }}
             />
             <span
-              className={`block h-[1.5px] rounded-full origin-center transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                showSolid ? "bg-[var(--neutral-600)]" : "bg-white"
-              } ${menuOpen ? "-rotate-45 -translate-y-[3.25px]" : ""}`}
+              className="block h-[1.5px] rounded-full transition-all duration-300 origin-center"
+              style={{
+                background: showSolid ? "var(--neutral-700)" : "white",
+                transform: menuOpen ? "rotate(-45deg) translateY(-4.5px)" : "none",
+              }}
             />
           </div>
         </button>
       </nav>
 
       {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
+      {menuOpen && (
         <div
-          className="px-5 pb-7 pt-3 flex flex-col gap-0.5"
+          className="md:hidden px-5 pb-6 pt-2 flex flex-col gap-1"
           style={{
-            background: showSolid
-              ? "rgba(255,255,255,0.95)"
-              : "rgba(15,31,78,0.88)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
+            background: showSolid ? "rgba(255,255,255,0.95)" : "rgba(15,31,78,0.92)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
           }}
         >
-          {NAV_LINKS.map((link, i) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`py-3.5 px-3 rounded-xl text-[15px] font-medium transition-all duration-300 ${
-                  showSolid
-                    ? isActive
-                      ? "text-[var(--lavender-600)] bg-[var(--lavender-50)]"
-                      : "text-[var(--neutral-600)] hover:bg-[var(--neutral-50)]"
-                    : isActive
-                      ? "text-white bg-white/10"
-                      : "text-white/80 hover:bg-white/5"
-                }`}
-                style={{
-                  transitionDelay: menuOpen ? `${(i + 1) * 50}ms` : "0ms",
-                  transform: menuOpen ? "translateX(0)" : "translateX(-8px)",
-                  opacity: menuOpen ? 1 : 0,
-                }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="py-3 px-3 rounded-xl text-[15px] font-medium"
+              style={{
+                color: showSolid ? "var(--neutral-700)" : "rgba(255,255,255,0.9)",
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
           <a
             href="https://apps.apple.com/app/manifesta"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 py-3.5 text-center rounded-xl text-white font-semibold text-sm transition-all duration-300"
-            style={{
-              background: "linear-gradient(135deg, var(--lavender-500), var(--lavender-600))",
-              boxShadow: "0 4px 16px -4px rgba(155,142,206,0.4)",
-              transitionDelay: menuOpen ? "200ms" : "0ms",
-              transform: menuOpen ? "translateY(0)" : "translateY(4px)",
-              opacity: menuOpen ? 1 : 0,
-            }}
+            className="mt-2 py-3 text-center rounded-xl text-white font-semibold text-sm"
+            style={{ background: "var(--lavender-500)" }}
           >
             Get the App
           </a>
         </div>
-      </div>
+      )}
     </header>
   );
 }
