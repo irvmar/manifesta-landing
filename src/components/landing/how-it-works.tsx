@@ -7,18 +7,18 @@ import { SectionReveal } from "@/components/ui/section-reveal";
 const STEPS = [
   {
     number: "01",
-    title: "Write your intention",
-    desc: "What do you want more of? Confidence, calm, clarity — say it in your own words.",
+    title: "Name your desire",
+    desc: "More confidence, deeper calm, a fresh start — put it into words. That's where manifestation begins.",
   },
   {
     number: "02",
-    title: "Press play",
-    desc: "The AI crafts a meditation just for that intention. A new voice, a new script, every time.",
+    title: "Let it in",
+    desc: "A meditation is born from your intention — a unique voice, a unique script, never repeated. Just close your eyes.",
   },
   {
     number: "03",
-    title: "Open your eyes, changed",
-    desc: "Log how you feel. Come back tomorrow. Watch the compound effect of daily practice.",
+    title: "Become who you're meant to be",
+    desc: "Reflect on how you feel. Return tomorrow. Day by day, you'll see yourself becoming who you envisioned.",
   },
 ];
 
@@ -43,10 +43,10 @@ export function HowItWorks() {
             className="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold text-[var(--lavender-800)] mb-3"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            It takes less than a minute to start
+            From thought to transformation
           </h2>
           <p className="text-[var(--neutral-500)] max-w-md mx-auto">
-            Download the app, write what&apos;s on your mind, and let the AI do the rest.
+            Every great change begins with a single intention. Here&apos;s how Manifesta turns yours into something real.
           </p>
         </SectionReveal>
 

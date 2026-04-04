@@ -34,9 +34,9 @@ export function Hero() {
           className="text-[clamp(2.5rem,7vw,4rem)] leading-[1.1] font-semibold text-white mb-5 hero-stagger"
           style={{ fontFamily: "var(--font-cormorant)", animationDelay: "0.42s" }}
         >
-          Meditations made
+          Manifest the life
           <br />
-          only for you
+          you were meant for
         </h1>
 
         {/* Subtitle */}
@@ -44,8 +44,8 @@ export function Hero() {
           className="text-base md:text-lg text-white/60 max-w-md mx-auto mb-10 leading-relaxed hero-stagger"
           style={{ animationDelay: "0.64s" }}
         >
-          Tell the app what you want to manifest. It creates a meditation
-          no one else will ever hear.
+          Name what you desire. The AI builds a meditation around it —
+          unique to you, designed to bring it closer.
         </p>
 
         {/* Social proof pill */}

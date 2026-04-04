@@ -5,20 +5,20 @@ import { AppStoreBadge } from "@/components/ui/app-store-badge";
 
 const FEATURES = [
   {
-    title: "Write what you want to manifest",
-    desc: "A promotion, inner peace, better sleep — type it in your own words. The AI gets it.",
+    title: "Name what you want to bring to life",
+    desc: "A promotion, inner peace, a new chapter — say it in your own words. The AI shapes it into your practice.",
   },
   {
-    title: "Pick your voice and soundscape",
-    desc: "Natural AI voices layered over rain, forest, or ocean. Find your perfect atmosphere.",
+    title: "Sink into the right atmosphere",
+    desc: "Choose a voice that calms you. Layer rain, forest, or ocean underneath. Make each session feel like home.",
   },
   {
-    title: "Listen anywhere, even offline",
-    desc: "Download sessions to your phone. Meditate on a plane, in a park, wherever you need it.",
+    title: "Carry your practice everywhere",
+    desc: "Download sessions for offline listening. On a flight, in a park, before a big meeting — your calm travels with you.",
   },
   {
-    title: "See your progress over time",
-    desc: "Before-and-after mood reflections show you what&apos;s actually changing. No guesswork.",
+    title: "Watch yourself transform",
+    desc: "Mood reflections before and after each session build a picture of your growth. The proof is in how you feel.",
   },
 ];
 
@@ -190,11 +190,11 @@ export function Features() {
                 className="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight text-[var(--lavender-800)] mb-2"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
-                A meditation app that listens to you first
+                Turn your intentions into reality
               </h2>
               <p className="text-[var(--neutral-500)] mb-4">
-                Most apps give you the same sessions everyone else gets.
-                Manifesta builds each one around what you actually need right now.
+                Other apps recycle the same scripts for everyone.
+                Manifesta creates each session from what you want to manifest — right now, today.
               </p>
             </SectionReveal>
 

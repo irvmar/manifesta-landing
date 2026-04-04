@@ -68,7 +68,7 @@ export function Testimonials() {
             className="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold text-[var(--lavender-800)]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            People are feeling the difference
+            Real people, real shifts
           </h2>
         </SectionReveal>
 

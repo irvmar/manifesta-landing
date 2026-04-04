@@ -11,7 +11,7 @@ const PILLARS = [
       </svg>
     ),
     title: "Yours alone",
-    desc: "Every session is generated from your words. No two meditations are ever the same.",
+    desc: "Speak your desire into existence. The AI turns your words into a meditation that only you will ever hear.",
   },
   {
     icon: (
@@ -20,7 +20,7 @@ const PILLARS = [
       </svg>
     ),
     title: "Close your eyes",
-    desc: "Premium voices and ambient soundscapes — rain, forest, ocean — wrap around you like a warm blanket.",
+    desc: "Let a calming voice guide you deeper. Rain, forest, or ocean — choose the world that helps you believe.",
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const PILLARS = [
       </svg>
     ),
     title: "Feel the shift",
-    desc: "Track your mood before and after. Watch the change happen — in your data and in your life.",
+    desc: "Track how you feel before and after each session. What starts as data becomes proof that you're changing.",
   },
 ];
 

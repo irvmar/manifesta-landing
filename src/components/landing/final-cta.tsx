@@ -40,11 +40,11 @@ export function FinalCTA() {
             className="text-[clamp(2rem,5vw,3rem)] font-semibold text-white leading-tight mb-4"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Your next meditation is waiting
+            Everything you want is on the other side of belief
           </h2>
           <p className="text-white/50 mb-10 max-w-md mx-auto leading-relaxed">
-            Download Manifesta. Write what matters to you.
-            Close your eyes and listen.
+            Name what you desire. Close your eyes. Let the meditation
+            carry you closer to the life you&apos;re creating.
           </p>
         </SectionReveal>
 
